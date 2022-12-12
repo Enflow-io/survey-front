@@ -1,0 +1,9 @@
+body #root {
+    --primary: #1677ff;
+    --primary-light: rgba(26, 183, 250, 0.1);
+    --secondary: #1ab7fa;
+    /* --background: white; */
+    /* --background-dim: white; */
+    /* --background-dim-light: #4d4d4d; */
+    /* --foreground: #ededed; */
+  }

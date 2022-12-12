@@ -1,0 +1,49 @@
+.trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.logo {
+  height: 32px;
+  margin: 16px 16px 16px 10px;
+  // background: rgba(255, 255, 255, 0.3);
+}
+
+.ant-layout-sider {
+  height: 100vh;
+  ;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  #root {
+    min-height: 100vh;
+  }
+}
+
+body,
+html {
+  height: 100%;
+}
+
+#survey-public-page {
+  .sd-root-modern {
+    min-height: 100vh;
+  }
+
+}
+
+.ant-table-thead {
+  th {
+    white-space: nowrap;
+  }
+}
