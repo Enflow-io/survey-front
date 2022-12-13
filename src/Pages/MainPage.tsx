@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import { Button, DatePicker, Space } from 'antd';
-import MainLayout from '../Layout/Layout';
 import { Table, Modal, theme } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import { redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ExclamationCircleFilled } from '@ant-design/icons';
-import { DownloadOutlined } from '@ant-design/icons';
-import { Content, Header } from 'antd/es/layout/layout';
 import LayoutPage from '../Layout/LayoutPage';
 import { DateTime } from "luxon";
 import { Survey, useAddNewSurveyMutation, useBulkDeleteSurveysMutation, useGetSurveysQuery } from '../app/services/survey';
 import NewSurveyForm from '../features/NewSurveyForm/NewSurveyForm';
-import { submitForm } from '../app/services/createForm';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../app/store';
 const { confirm } = Modal;
@@ -65,9 +59,9 @@ function MainPage() {
 
     const deleteConfirm = () => {
         confirm({
-            title: 'Do you want to delete these items?',
+            title: 'Вы действительно хотите удалить элемент',
             icon: <ExclamationCircleFilled />,
-            content: 'When clicked the OK button, this dialog will be closed after 1 second',
+            content: 'После удаления элемент будет невозможно восстановить.',
             onOk() {
                 return deleteBulkSurvey({
                     ids: [...selectedRows.map(el => el.id)]
