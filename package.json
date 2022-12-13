@@ -27,6 +27,7 @@
     "react-toastify": "^9.1.1",
     "sass": "^1.56.1",
     "serve": "^14.1.2",
+    "source-map-explorer": "^2.5.3",
     "survey-analytics": "^1.9.62",
     "survey-core": "^1.9.62",
     "survey-creator-react": "^1.9.62",
@@ -39,7 +40,8 @@
     "build": "env-cmd react-scripts build",
     "serve": "node src/server.js",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "eslintConfig": {
     "extends": [
