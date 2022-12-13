@@ -1,6 +1,5 @@
 import React, { ReactNode, useState } from 'react';
 import './../index.scss';
-import classes from "./Layout.module.scss";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -8,12 +7,11 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons';
-import { DownloadOutlined } from '@ant-design/icons';
 import { Button, Layout, Menu, Space, theme } from 'antd';
 import { matchRoutes, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { routes } from '..';
 
-const { Header, Sider, Content } = Layout;
+const {  Sider,  } = Layout;
 // import classes from "./Layout.module.scss";
 
 interface LayoutProps {

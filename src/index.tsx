@@ -1,21 +1,17 @@
-import React, { ReactNode, useState, lazy, Suspense } from 'react';
+import React, {  useState, lazy, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.scss';
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
 } from "react-router-dom";
 import Layout from './Layout/Layout';
 import MainPage from './Pages/MainPage';
-// import SurveyPage from './Pages/SurveyPage';
-import PublicSurveyPage from './Pages/PublicSurveyPage';
-// import AnalyticsPage from './Pages/AnalyticsPage';
-import DashboardPage from './Pages/DashboardPage';
+const PublicSurveyPage = lazy(() => import('./Pages/PublicSurveyPage'))
+const DashboardPage = lazy(() => import('./Pages/DashboardPage'))
 
 
 
@@ -43,14 +39,14 @@ export const routes = [
       },
       {
         path: "/dashboard",
-        element: <DashboardPage />
+        element: <Suspense fallback={<div className='loader'></div>}><DashboardPage /></Suspense>
       },
     ]
   },
 
   {
     path: "/s/:id",
-    element: <PublicSurveyPage />
+    element: <Suspense fallback={<div className='loader'></div>}><PublicSurveyPage /></Suspense>
   },
 
 ]
