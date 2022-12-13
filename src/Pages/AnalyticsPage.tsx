@@ -32,6 +32,7 @@ function AnalyticsPage() {
     useEffect(() => {
         if (data && answersData) {
             const survey = new Model(data?.config);
+            survey.locale = 'ru'
             setSurvey(survey);
 
             const vizPanelOptions = {
@@ -46,9 +47,14 @@ function AnalyticsPage() {
                 results,
                 vizPanelOptions
             );
+            vizPanel.locale = "ru"
             setVizPanel(vizPanel);
 
             const surveyAnalyticsTabulator = new SurveyAnalyticsTabulator.Tabulator(survey, results);
+            surveyAnalyticsTabulator.locale = "ru"
+            
+            console.log(surveyAnalyticsTabulator.getLocales())
+            // surveyAnalyticsTabulator.local = "ru"
             const panel1Node = document.getElementById("surveyVizTabulator");
             if(panel1Node){
                 surveyAnalyticsTabulator.render(panel1Node);

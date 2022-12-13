@@ -9,6 +9,7 @@ import { useGetSurveyByIdQuery, useGetSurveyByLinkQuery } from '../app/services/
 import { useAddNewAnswerMutation } from '../app/services/answer.service';
 import { RingLoader } from "react-spinners"
 // StylesManager.applyTheme("defaultV2");
+import "survey-core/survey.i18n";
 
 
 function PublicSurveyPage() {
@@ -32,6 +33,7 @@ function PublicSurveyPage() {
 
         const survey = new Model(JSON.parse(data?.config));
         survey.onComplete.add(surveyComplete);
+        survey.locale = "ru";
 
         setSurvey(survey);
     }, [data])
