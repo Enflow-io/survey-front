@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { buildQueries } from '@testing-library/react'
+
 
 export interface Survey {
   name: string
@@ -11,7 +11,7 @@ export interface Survey {
 export const surveyApi = createApi({
   reducerPath: 'surveyApi',
   tagTypes: ['Surveys'],
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3010/survey' }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${process.env.REACT_APP_API_URL}/survey` }),
   endpoints: (builder) => ({
     getSurveyById: builder.query<Survey, string>({
       query: (id) => `/${id}`,

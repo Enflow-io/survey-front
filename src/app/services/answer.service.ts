@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import exp from 'constants';
+
 
 export interface Answer {
     id: number
@@ -10,7 +10,7 @@ export interface Answer {
 export const answersApi = createApi({
     reducerPath: 'answersApi',
     tagTypes: ['Answers'],
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3010/answer' }),
+    baseQuery: fetchBaseQuery({ baseUrl: `${process.env.REACT_APP_API_URL}/answer` }),
     endpoints: (builder) => ({
         addNewAnswer: builder.mutation({
             query: (payload) => ({
