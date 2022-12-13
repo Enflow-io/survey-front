@@ -20,6 +20,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'survey-core/defaultV2.min.css';
 
 import 'react-toastify/dist/ReactToastify.css';
+import "./tagbox.scss";
 const { confirm } = Modal;
 
 StylesManager.applyTheme("defaultV2");
