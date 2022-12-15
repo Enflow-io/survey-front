@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { baseQueryWithRedirect } from './baseQuery';
 
 
 export interface Answer {
@@ -10,11 +11,11 @@ export interface Answer {
 export const answersApi = createApi({
     reducerPath: 'answersApi',
     tagTypes: ['Answers'],
-    baseQuery: fetchBaseQuery({ baseUrl: `${process.env.REACT_APP_API_URL}/answer` }),
+    baseQuery: baseQueryWithRedirect,
     endpoints: (builder) => ({
         addNewAnswer: builder.mutation({
             query: (payload) => ({
-                url: '/',
+                url: '/answer/',
                 method: 'POST',
                 body: payload,
                 headers: {
@@ -24,7 +25,7 @@ export const answersApi = createApi({
               invalidatesTags: ['Answers']
         }),
         getAnswers: builder.query({
-            query: (surveyId) => `/?surveyId=${surveyId}`,
+            query: (surveyId) => `/answer/?surveyId=${surveyId}`,
             providesTags: ['Answers'],
           }),
     })

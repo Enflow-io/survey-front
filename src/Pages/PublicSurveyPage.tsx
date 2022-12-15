@@ -1,15 +1,17 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import MainLayout from '../Layout/Layout';
 import { StylesManager, Model, SurveyModel } from 'survey-core';
-// import 'survey-core/defaultV2.min.css';
+import "./../Layout/theme.css"
+import 'survey-core/defaultV2.min.css';
 import { Survey } from 'survey-react-ui';
-// import classes from "./PublicServeyPage.module.scss"
+import classes from "./PublicServeyPage.module.scss"
 import { useParams } from 'react-router-dom';
 import { useGetSurveyByIdQuery, useGetSurveyByLinkQuery } from '../app/services/survey';
 import { useAddNewAnswerMutation } from '../app/services/answer.service';
 import { RingLoader } from "react-spinners"
-// StylesManager.applyTheme("defaultV2");
 import "survey-core/survey.i18n";
+StylesManager.applyTheme("defaultV2");
+
 
 
 function PublicSurveyPage() {
@@ -42,6 +44,10 @@ function PublicSurveyPage() {
 
     const isReady = data?.config && survey;
     // return <div className={classes.Page}>
+
+    if(!data?.config && data?.id){
+        return <div>Опрос не сконфигурирован</div>
+    }
     return <div >
         {(!isReady) && <div style={{
             width: "100%",

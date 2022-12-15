@@ -1,4 +1,4 @@
-import React, {  useState, lazy, Suspense } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import Layout from './Layout/Layout';
 import MainPage from './Pages/MainPage';
+import LoginPage from './features/Login/Login';
+import RequireAuth from './features/RequireAuth';
 const PublicSurveyPage = lazy(() => import('./Pages/PublicSurveyPage'))
 const DashboardPage = lazy(() => import('./Pages/DashboardPage'))
 
@@ -22,36 +24,44 @@ const AnalyticsPage = lazy(() => import('./Pages/AnalyticsPage'))
 const SurveyPage = lazy(() => import('./Pages/SurveyPage'))
 export const routes = [
   {
-    path: "/",
-    element: <Layout />,
+    element: <RequireAuth />,
     children: [
-      {
-        index: true,
-        element: <MainPage />
-      },
-      {
-        path: "/survey/:id",
-        element: <Suspense fallback={<div className='loader'></div>}><SurveyPage /></Suspense>
-      },
-      {
-        path: "/survey/:id/analytics",
-        element: <Suspense fallback={<div className='loader'></div>}><AnalyticsPage /></Suspense>
-      },
-      {
-        path: "/dashboard",
-        element: <Suspense fallback={<div className='loader'></div>}><DashboardPage /></Suspense>
-      },
-    ]
-  },
 
+      {
+        path: "/",
+        element: <Layout />,
+        children: [
+          {
+            index: true,
+            element: <MainPage />
+          },
+          {
+            path: "/survey/:id",
+            element: <Suspense fallback={<div className='loader'></div>}><SurveyPage /></Suspense>
+          },
+          {
+            path: "/survey/:id/analytics",
+            element: <Suspense fallback={<div className='loader'></div>}><AnalyticsPage /></Suspense>
+          },
+          {
+            path: "/dashboard",
+            element: <Suspense fallback={<div className='loader'></div>}><DashboardPage /></Suspense>
+          },
+        ]
+      }]
+  },
   {
     path: "/s/:id",
     element: <Suspense fallback={<div className='loader'></div>}><PublicSurveyPage /></Suspense>
   },
+  {
+    path: "/login",
+    element: <LoginPage />
+  },
 
 ]
 const router = createBrowserRouter(routes);
-
+const storeObj = store.getState();
 
 root.render(
   <React.StrictMode>

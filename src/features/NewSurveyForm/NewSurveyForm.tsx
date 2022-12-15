@@ -28,8 +28,8 @@ const NewSurveyForm = (props: NewSurveyFormProps) => {
             console.log("data", data)
             await dispatch(submitForm({
                 ...data,
-                startDate: dayjs(data.startDate, DATE_FORMAT).toISOString(),
-                finishDate: dayjs(data.finishDate, DATE_FORMAT).toISOString(),
+                startDate: data.startDate ? dayjs(data.startDate, DATE_FORMAT).toISOString() : null,
+                finishDate: data.finishDate ? dayjs(data.finishDate, DATE_FORMAT).toISOString() : null,
             }));
             reset({})
             props.onClose();
@@ -80,7 +80,7 @@ const NewSurveyForm = (props: NewSurveyFormProps) => {
                 <Controller
                     name="startDate"
                     control={control}
-                    rules={{ required: true }}
+                    // rules={{ required: true }}
                     render={({ field }) => {
                         return <DatePicker
                             placeholder=""
@@ -103,7 +103,7 @@ const NewSurveyForm = (props: NewSurveyFormProps) => {
                 <Controller
                     name="finishDate"
                     control={control}
-                    rules={{ required: true }}
+                    // rules={{ required: true }}
                     render={({ field }) => <DatePicker
                         placeholder=""
                         style={{

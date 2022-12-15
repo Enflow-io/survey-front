@@ -10,6 +10,8 @@ import {
 import { Button, Layout, Menu, Space, theme } from 'antd';
 import { matchRoutes, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { routes } from '..';
+import { useDispatch } from 'react-redux';
+import { signOut } from '../app/services/auth.service';
 
 const {  Sider,  } = Layout;
 // import classes from "./Layout.module.scss";
@@ -20,6 +22,7 @@ interface LayoutProps {
 }
 const MainLayout: React.FC<LayoutProps> = (props: LayoutProps) => {
   const [collapsed, setCollapsed] = useState(false);
+  const dispatch = useDispatch();
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -115,8 +118,9 @@ const MainLayout: React.FC<LayoutProps> = (props: LayoutProps) => {
               key: '3',
               icon: <UploadOutlined />,
               label: 'Выйти',
-              onClick: () => {
-                navigate('/exit')
+              onClick: async () => {
+                dispatch(signOut())
+                await navigate('/login')
               }
             },
           ]}

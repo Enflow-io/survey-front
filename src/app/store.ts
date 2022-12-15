@@ -1,15 +1,20 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
 import { answersApi } from './services/answer.service';
 import { surveyApi } from './services/survey';
+import { authApi, reducer } from './services/auth.service';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     [surveyApi.reducerPath]: surveyApi.reducer,
     [answersApi.reducerPath]: answersApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
+    userSlice: reducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(surveyApi.middleware).concat(answersApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().
+    concat(surveyApi.middleware).
+    concat(answersApi.middleware).
+    concat(authApi.middleware),
+    
 });
 
 export type AppDispatch = typeof store.dispatch;

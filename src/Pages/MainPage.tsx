@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Space } from 'antd';
 import { Table, Modal, theme } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
@@ -10,6 +10,7 @@ import { Survey, useAddNewSurveyMutation, useBulkDeleteSurveysMutation, useGetSu
 import NewSurveyForm from '../features/NewSurveyForm/NewSurveyForm';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../app/store';
+import { useAuth } from '../app/hooks';
 const { confirm } = Modal;
 
 
@@ -47,6 +48,14 @@ const columns: ColumnsType<Survey> = [
 function MainPage() {
     const navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
+    const auth = useAuth();
+    useEffect(() => {
+        if (!auth?.token) {
+            return navigate("/login")
+        }
+    }, [auth])
+
+
 
     const [selectedRows, setSelectedRows] = useState<Survey[]>([]);
     const { data, error, isLoading } = useGetSurveysQuery({

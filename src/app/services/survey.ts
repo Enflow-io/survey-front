@@ -1,4 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import userSlice from './auth.service'
+import { baseQueryWithRedirect } from './baseQuery'
 
 
 export interface Survey {
@@ -11,24 +13,24 @@ export interface Survey {
 export const surveyApi = createApi({
   reducerPath: 'surveyApi',
   tagTypes: ['Surveys'],
-  baseQuery: fetchBaseQuery({ baseUrl: `${process.env.REACT_APP_API_URL}/survey` }),
+  baseQuery: baseQueryWithRedirect,
   endpoints: (builder) => ({
     getSurveyById: builder.query<Survey, string>({
-      query: (id) => `/${id}`,
+      query: (id) => `/survey/${id}`,
       providesTags: ['Surveys'],
     }),
     getSurveyByLink: builder.query<Survey, string>({
-      query: (id) => `/link/${id}`,
+      query: (id) => `/public-survey/link/${id}`,
       providesTags: ['Surveys'],
     }),
     getSurveys: builder.query({
-      query: (id) => `/`,
+      query: (id) => `/survey/`,
       providesTags: ['Surveys'],
     }),
 
     addNewSurvey: builder.mutation({
       query: (payload) => ({
-        url: '/',
+        url: '/survey',
         method: 'POST',
         body: payload,
         headers: {
@@ -39,7 +41,7 @@ export const surveyApi = createApi({
     }),
     updateSurvey: builder.mutation({
       query: ({id, ...payload}) => ({
-        url: `/${id}`,
+        url: `/survey/${id}`,
         method: 'PATCH',
         body: payload,
         headers: {
@@ -50,7 +52,7 @@ export const surveyApi = createApi({
     }),
     publicateSurvey: builder.mutation({
       query: (id) => ({
-        url: `/${id}/public-id`,
+        url: `/survey/${id}/public-id`,
         method: 'GET',
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
@@ -60,7 +62,7 @@ export const surveyApi = createApi({
     }),
     bulkDeleteSurveys: builder.mutation({
       query: (payload) => ({
-        url: '/delete',
+        url: '/survey/delete',
         method: 'DELETE',
         body: payload,
         headers: {
@@ -70,7 +72,7 @@ export const surveyApi = createApi({
       invalidatesTags: ['Surveys'],
     }),
     getAnalytics: builder.query({
-      query: (id) => `/analytics`,
+      query: (id) => `/survey/analytics`,
     }),
 
   }),
