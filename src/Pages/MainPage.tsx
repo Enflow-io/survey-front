@@ -26,14 +26,14 @@ const columns: ColumnsType<Survey> = [
     },
     {
         title: 'Дата создания',
-        dataIndex: 'startDate',
+        dataIndex: 'createdDate',
         render: (val) => val ? DateTime.fromISO(val).toLocaleString(DateTime.DATETIME_MED) : "–"
     },
-    {
-        title: 'Дата окончания',
-        dataIndex: 'finishDate',
-        render: (val) => val ? DateTime.fromISO(val).toLocaleString(DateTime.DATETIME_MED) : "–"
-    },
+    // {
+    //     title: 'Дата окончания',
+    //     dataIndex: 'finishDate',
+    //     render: (val) => val ? DateTime.fromISO(val).toLocaleString(DateTime.DATETIME_MED) : "–"
+    // },
     {
         title: 'Ссылка',
         dataIndex: 'link',

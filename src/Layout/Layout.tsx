@@ -106,14 +106,14 @@ const MainLayout: React.FC<LayoutProps> = (props: LayoutProps) => {
                 navigate('/')
               }
             },
-            {
-              key: '2',
-              icon: <VideoCameraOutlined />,
-              label: 'Активность',
-              onClick: () => {
-                navigate('/dashboard')
-              }
-            },
+            // {
+            //   key: '2',
+            //   icon: <VideoCameraOutlined />,
+            //   label: 'Активность',
+            //   onClick: () => {
+            //     navigate('/dashboard')
+            //   }
+            // },
             {
               key: '3',
               icon: <UploadOutlined />,

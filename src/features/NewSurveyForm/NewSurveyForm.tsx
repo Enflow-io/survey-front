@@ -75,7 +75,7 @@ const NewSurveyForm = (props: NewSurveyFormProps) => {
 
 
 
-            <Form.Item label="Дата начала опроса">
+            {/* <Form.Item label="Дата начала опроса">
 
                 <Controller
                     name="startDate"
@@ -117,7 +117,7 @@ const NewSurveyForm = (props: NewSurveyFormProps) => {
                 />
 
                 {errors.finishDate && <div className={classes.Error}>Поле обязательно для заполнения</div>}
-            </Form.Item>
+            </Form.Item> */}
 
             <Space wrap style={{ width: '100%', justifyContent: 'right', paddingTop: 10 }}>
                 <Button onClick={submitFormHandle} type="primary">Сохранить</Button>
