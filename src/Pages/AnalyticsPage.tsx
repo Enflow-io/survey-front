@@ -36,7 +36,8 @@ function AnalyticsPage() {
             setSurvey(survey);
 
             const vizPanelOptions = {
-                allowHideQuestions: false
+                allowHideQuestions: false,
+                haveCommercialLicense: true
             }
 
             console.log("qustions", survey.getAllQuestions())

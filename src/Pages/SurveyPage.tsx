@@ -58,12 +58,14 @@ function SurveyPage() {
 
         setConfigUpdated(true)
 
-        const creator = new SurveyCreator(options);
+        const creator = new SurveyCreator({...options, haveCommercialLicense: true});
+        
         // @ts-ignore
         creator.text = data.config
 
 
 
+        
         {/* @ts-ignore */ }
         creator.saveSurveyFunc = async (saveNo: number, callback: any) => {
             {/* @ts-ignore */ }
